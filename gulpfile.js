@@ -15,20 +15,20 @@ gulp.task('default', ['sass'], function() {
   gulp.src('./index.html')
     .pipe(inject(
         eventStream.merge(
-          css,
           gulp.src(
-            bowerFiles(), {read:false}
+            bowerFiles(), {read: false}
           ),
+          css,
           gulp.src('./js/*.js', {read: false})
         )
-    ))
-    .pipe(gulp.dest('.'));
+    ), {addRootSlash: false})
+    .pipe(gulp.dest(''));
 })
 
 gulp.task('sass', function () {
   gulp.src('./scss/**/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
-    .pipe(gulp.dest('./css'));
+    .pipe(gulp.dest(""));
 });
 
 gulp.task('sass:watch', function () {
