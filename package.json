@@ -1,0 +1,24 @@
+{
+  "name": "cryptoclerk",
+  "version": "0.1.0",
+  "description": "Audit panel to compare registered solidity code to deployed bytecode on the Ethereum blockchain.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hegistry/cryptoclerk.git"
+  },
+  "author": "JD Maresco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hegistry/cryptoclerk/issues"
+  },
+  "homepage": "https://github.com/hegistry/cryptoclerk#readme",
+  "devDependencies": {
+    "event-stream": "^3.3.1",
+    "gulp-sass": "^2.0.4",
+    "gulp": "^3.9.0"
+  }
+}

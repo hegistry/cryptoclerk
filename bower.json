@@ -1,0 +1,18 @@
+{
+  "name": "cryptoclerk",
+  "version": "0.1.0",
+  "authors": [
+    "JD Maresco <jdmaresco@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "homepage": "https://github.com/hegistry/cryptoclerk",
+  "dependencies": {
+    "bootstrap-sass": "~3.3.5",
+    "jquery": "~2.1.4"
+  }
+}
