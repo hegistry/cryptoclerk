@@ -6058,3 +6058,7 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+.main {
+  position: relative;
+  margin-top: 100px; }

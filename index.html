@@ -4,14 +4,94 @@
     <meta charset="utf-8">
     <title>CryptoClerk</title>
     <!-- inject:css -->
+    <link rel="stylesheet" href="/bower_components/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="/css/highlight-default.css">
     <link rel="stylesheet" href="/css/main.css">
     <!-- endinject -->
 
   </head>
   <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">CryptoClerk</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Register</a></li>
+            <li class=""><a href="#">Verify</a></li>
+          </ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <form>
+            <div class="form-group">
+              <label for="contractAddress">Contract Address:</label>
+              <input type="text" class="form-control" id="contractAddressInput" placeholder="e1fd0d4a52b75a694de8b55528ad48e2e2cf7859">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div>Solidity:</div>
+          <pre><code class="javascript" id="solidityContent" placeholder="">
+contract Coin {
+    address minter;
+    mapping (address => uint) balances;
+
+    event Send(address from, address to, uint value);
+
+    function Coin() {
+        minter = msg.sender;
+    }
+    function mint(address owner, uint amount) {
+        if (msg.sender != minter) return;
+        balances[owner] += amount;
+    }
+    function send(address receiver, uint amount) {
+        if (balances[msg.sender] < amount) return;
+        balances[msg.sender] -= amount;
+        balances[receiver] += amount;
+        Send(msg.sender, receiver, amount);
+    }
+    function queryBalance(address addr) constant returns (uint balance) {
+        return balances[addr];
+    }
+}
+          </code></pre>
+        </div>
+
+        <div class="col-md-6">
+          <div>Bytecode:</div>
+          <pre class="js" id="byteCodeContent" placeholder=""></pre>
+        </div>
+      </div>
+    </div>
+
     <!-- inject:js -->
+    <script src="/js/highlight.pack.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/codemirror/lib/codemirror.js"></script>
+    <script src="/bower_components/bignumber.js/bignumber.js"></script>
+    <script src="/bower_components/crypto-js/index.js"></script>
     <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="/bower_components/web3/dist/web3.js"></script>
+    <script src="/bower_components/web3/dist/web3.min.js"></script>
     <!-- endinject -->
   </body>
 </html>
