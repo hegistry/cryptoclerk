@@ -34,12 +34,12 @@
             <li class="toggleableButton" id="verifyButton">
               <a href="#">Verify</a>
             </li>
-            <div class="navbar-text" id="walletRegistryDiv" style="display:none;">
+            <li class="navbar-text" id="walletRegistryDiv" style="display:none;">
               <label for="walletaddress">Your Address&nbsp;&nbsp;</label>
               <input type="text" name="walletaddress" id="walletaddress" readonly>
               <label for="walletDecrypt">Your Password&nbsp;&nbsp;</label>
               <input type="password" id="walletDecrypt" placeholder="password">
-            </div>
+            </li>
 
           </ul>
 
@@ -140,8 +140,10 @@
                 <h4 class="modal-title" id="myModalLabel">Comparing Code</h4>
               </div>
               <div class="modal-body">
-                <div class="modal-center"><img src="img/ajax-loader.gif" alt="" /></div><br><br>
-                Sit tight, we're checking out your code...
+                <div class="modal-center" id="spinner-results"><img src="img/ajax-loader.gif" alt="" /></div><br><br>
+                <div id="check-code-status">
+                  Sit tight, we're checking out your code...
+                </div>
               </div>
             </div>
           </div>

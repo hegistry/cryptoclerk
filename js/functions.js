@@ -59,9 +59,18 @@ function compile(code) {
     if (!!appCode.compiledSolidity && !!appCode.byteCode) {
       console.log("... and there's something to compare");
       $('#compareModal').modal('show');
-      console.log("COMPARISON RESULT: " + appCode.compareCode());
+      var compareResult = appCode.compareCode();
       var timeout = window.setTimeout(function() {
-        $('#compareModal').modal('hide');
+        if (compareResult) {
+          $('#spinner-results').html("<span class='glyphicon glyphicon-thumbs-up glyphicon-custom-size'></span>");
+          $('#check-code-status').html("The registered Solidity code <b>matches</b> the compiled bytecode on the blockchain.")
+        } else {
+          $('#spinner-results').html("<span class='glyphicon glyphicon-thumbs-down glyphicon-custom-size'></span>");
+          $('#check-code-status').html("The registered Solidity code <b>does not match</b> the compiled bytecode on the blockchain.")
+
+        }
+        //$('#compareModal').modal('hide');
+
       }, 2000)
     }
   }
