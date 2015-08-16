@@ -35,46 +35,30 @@
     </nav>
 
     <div class="container main">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <form>
+
+      <!-- SEARCH REGISTRY -->
+      <div class="row search-row">
+        <div class="col-md-8">
+          <form class="form-inline">
             <div class="form-group">
               <label for="contractAddress">Contract Address:</label>
-              <input type="text" class="form-control" id="contractAddressInput" placeholder="e1fd0d4a52b75a694de8b55528ad48e2e2cf7859">
+              <input type="text" class="form-control" id="contractAddressInput" placeholder="e1fd0d4a52b75a694de8b55528ad48e2e2cf7859" style="width: 50%">
             </div>
           </form>
         </div>
+        <div class="col-md-4">
+          <button type="button" name="button" id="searchRegistryButton">Search Registry</button>
+          <button type="button" name="button" id="getContractButton">Get Contract Code</button>
+          <button type="button" name="button" id="compileButton">Compile Code on Left</button>
+        </div>
       </div>
 
-      <div class="row">
+      <div class="row content-row">
         <div class="col-md-6">
           <div>Solidity:</div>
-          <pre><code class="javascript" id="solidityContent" placeholder="">
-contract Coin {
-    address minter;
-    mapping (address => uint) balances;
+          <pre><code class="javascript" id="solidityContent" placeholder="Enter an Ethereum address above...">
 
-    event Send(address from, address to, uint value);
-
-    function Coin() {
-        minter = msg.sender;
-    }
-    function mint(address owner, uint amount) {
-        if (msg.sender != minter) return;
-        balances[owner] += amount;
-    }
-    function send(address receiver, uint amount) {
-        if (balances[msg.sender] < amount) return;
-        balances[msg.sender] -= amount;
-        balances[receiver] += amount;
-        Send(msg.sender, receiver, amount);
-    }
-    function queryBalance(address addr) constant returns (uint balance) {
-        return balances[addr];
-    }
-}
           </code></pre>
-          <button type="button" name="button" id="compileButton">TEST</button>
         </div>
 
         <div class="col-md-6">

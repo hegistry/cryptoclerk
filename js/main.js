@@ -6,7 +6,7 @@ function compile(code) {
    oReq.open("POST", apiURL + "/solc", true);
 
    var params = "src=" + encodeURIComponent(code);
-   oReq.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+   oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
    oReq.onload = function () {
      if (oReq.readyState == 4 && oReq.status == 200) {
@@ -27,8 +27,56 @@ function compile(code) {
 
  $(document).ready(function() {
    $('#compileButton').on('click', function() {
-     console.log("Button was clicked");
+     console.log("Compile button was clicked");
      var code = $('#solidityContent').text();
      compile(code);
    })
+
+   $('#searchRegistryButton').on('click', function() {
+     console.log("Search registry button was clicked");
+     console.log("THIS IS ONLY A MOCK UP");
+
+     var contractAddress = $('#contractAddressInput').val();
+     $('#byteCodeContent').text(data[0].code);
+
+
+     /*$.ajax('http://hacknet.blockapps.net/eth/v1.0/account?address=' + contractAddress, {
+       type: 'GET'
+     }).done(function(data) {
+     })*/
+   })
+
+   $('#getContractButton').on('click', function() {
+     console.log("Get contract button was clicked");
+     var contractAddress = $('#contractAddressInput').val();
+     $.ajax('http://hacknet.blockapps.net/eth/v1.0/account?address=' + contractAddress, {
+       type: 'GET'
+     }).done(function(data) {
+       $('#byteCodeContent').text(data[0].code);
+     })
+   })
+
+   /*
+
+   var ipfsHash = "QmRwMoQRjDxQHrqkqkixHkWXhijw2gAh6afhVkiqDYckFC"
+
+   $.ajax("http://gateway.ipfs.io/ipfs/" + ipfsHash, {
+     dataType: 'jsonp'
+   }).done(function(data) {
+     console.log(data);
+   })
+
+
+   var codeReq = new XMLHttpRequest();
+   codeReq.open("GET", "http://gateway.ipfs.io/ipfs/" + ipfsHash, true);
+   codeReq.setRequestHeader("Content-Type", "text/plain");
+   codeReq.onload = function() {
+     if (codeReq.readyState == 4 && codeReq.status == 200) {
+       console.log(this.responseText);
+     } else {
+       console.log('ERROR: ' + this.responseText);
+     }
+   }
+   codeReq.send();
+   */
  });

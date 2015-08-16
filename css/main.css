@@ -6062,3 +6062,11 @@ button.close {
 .main {
   position: relative;
   margin-top: 100px; }
+
+.search-row {
+  background-color: #CEECF5;
+  padding: 15px; }
+
+.content-row {
+  background-color: #F7F8E0;
+  padding: 15px; }
