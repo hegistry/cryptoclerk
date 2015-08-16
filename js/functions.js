@@ -13,7 +13,7 @@ function compile(code) {
    var oReq = new XMLHttpRequest();
    oReq.open("POST", apiURL + "/eth/v1.0/solc", true);
 
-   var params = "src=" + encodeURIComponent(code);
+   var params = "src=" + encodeURIComponent(code.replace(/(\r\n|\n|\r)/gm,""));
    oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
    oReq.onload = function () {
@@ -26,6 +26,7 @@ function compile(code) {
          console.log("No contracts were compiled.");
        } else {
          appCode.compiledSolidity = compilerData.contracts[0].bin;
+         $('#solidityContentCompiled').text(appCode.compiledSolidity);
          codeReadyCheck();
        }
      } else {
@@ -46,31 +47,33 @@ function compile(code) {
   }
 
   var getRegistryData = function() {
-    var regReq = new XMLHttpRequest();
-    var ipfsGateway = "http://45.55.48.176:8080/ipfs/";
+
+    // THEORETICALLY WE WOULD CALL A CONTRACT HERE TO GET THE IPFS HASH
+    var ipfsGateway = "http://localhost:8080/ipfs/";
     var ipfsHash = "QmRwMoQRjDxQHrqkqkixHkWXhijw2gAh6afhVkiqDYckFC"
+    $('#ipfsHashContent').attr("value",ipfsHash);
 
-    // LOAD FROM IPFS
-    /*
-    console.log("TRYING TO GET IPFS DATA");
-    regReq.open('GET', ipfsGateway + ipfsHash);
+    // BUT WE'RE HAVING ISSUE WITH CORS AND OUR IPFS NODE
+
+        // LOAD FROM IPFS
+        /*
+        regReq.open('GET', ipfsGateway + ipfsHash);
+        regReq.onreadystatechange = function() {
+          appCode.rawSolidity = regReq.responseText;
+          $('#solidityContent').text(appCode.rawSolidity);
+        }
+        regReq.send();
+        */
+
+    // IN REALITY WE'RE LOADING FROM OUR OWN DIRECTORY
+    var regReq = new XMLHttpRequest();
+
+    regReq.open('GET', 'SolidityRegistry.sol');
     regReq.onreadystatechange = function() {
       appCode.rawSolidity = regReq.responseText;
-      console.log("Retrieved IPFS Data: " + appCode.rawSolidity);
       $('#solidityContent').text(appCode.rawSolidity);
     }
     regReq.send();
-    */
-
-    // LOAD SOL FILE
-
-    regReq.open('GET', 'SimpleStorage.sol');
-    regReq.onreadystatechange = function() {
-      appCode.rawSolidity = regReq.responseText;
-      $('#solidityContent').text(appCode.rawSolidity);
-    }
-    regReq.send();
-    
   }
 
   var codeReadyCheck = function() {

@@ -1,8 +1,12 @@
 @import "../bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
+body {
+  background-color: #ccc;
+}
+
 .main {
   position: relative;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
 .search-row {
@@ -15,8 +19,11 @@
   padding: 15px;
 }
 
-#solidityContent, #byteCodeContent {
-  min-height: 400px;
+#solidityContent {
+  min-height: 225px;
+}
+#byteCodeContent {
+  min-height: 225px;
 }
 
 .modal-center {

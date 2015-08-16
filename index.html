@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <title>CryptoClerk</title>
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
     <!-- endinject -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
 
   </head>
   <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -25,12 +25,12 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active toggleableButton" id="registerButton">
+            <!--li class="toggleableButton" id="registerButton">
               <a href="#">Register</a>
             </li>
             <li class="toggleableButton" id="loginButton">
               <a href="#">Login</a>
-            </li>
+            </li-->
             <li class="navbar-text" id="walletRegistryDiv" style="display:none;">
               <label for="walletaddress">Your Address&nbsp;&nbsp;</label>
               <input type="text" name="walletaddress" id="walletaddress" readonly>
@@ -48,23 +48,16 @@
 
       <!-- SEARCH REGISTRY -->
       <div class="row search-row">
-        <div class="col-md-4">
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="contractAddress">Contract Address:</label>
-              <input type="text" name=_contractAddress id="getHash_contractAddress" class="form-control">
-            </div>
-          </form>
+        <div class="col-md-6">
+          <input type="text" name="_contractAddress" id="getHash_contractAddress" class="form-control" placeholder="Enter Contract Address">
         </div>
-        <div class="col-md-4">
-          <div class="col-md-4" id="functionsRegistryDiv">
-            <div id="getHashDiv">
-              <button onclick="callgetHash()" id="searchRegistryButton" class="btn btn-primary">Search Registry</button>
-            </div>
+        <div id="functionsRegistryDiv" class="col-md-3">
+          <div id="getHashDiv">
+            <button onclick="callgetHash()" id="searchRegistryButton" class="btn btn-primary" style="width:100%">Search Registry</button>
           </div>
         </div>
-        <div class="col-md-4">
-          <button type="button" name="button" id="compareCodeButton" class="btn btn-primary">Compare Code</button>
+        <div class="col-md-3">
+          <button type="button" name="button" id="compareCodeButton" class="btn btn-primary" style="width:100%">Compare Code</button>
         </div>
       </div>
       <!--div class="row">
@@ -72,14 +65,27 @@
       </div-->
 
       <div class="row content-row">
+        <div class="col-md-12">
+          <label for="ipfsHashContent">IPFS Hash</label>
+          <input type="text" name="ipfsHashContent" id="ipfsHashContent" class="form-control">
+        </div>
+      </div>
+
+      <div class="row content-row">
         <div class="col-md-6">
-          <div>Solidity:</div>
-          <pre><code class="javascript" id="solidityContent" placeholder="Enter an Ethereum address above..."></code></pre>
+          <ul class="nav nav-tabs">
+            <li id="solDisplay"  role="presentation" class="active"><a href="#">Solidity</a></li>
+            <li id="solCDisplay" role="presentation">               <a href="#">Compiled</a></li>
+          </ul>
+          <pre id="solPre">
+            <code class="javascript" name="solidityContent" id="solidityContent"         placeholder="Enter an Ethereum address above..."></code></pre>
+          <pre id="solCPre" style="display:none;">
+            <code class="javascript" name="solidityContent" id="solidityContentCompiled" placeholder="Enter an Ethereum address above...."></code></pre>
         </div>
 
         <div class="col-md-6">
-          <div>Bytecode:</div>
-          <pre><code class="javascript" id="byteCodeContent" placeholder=""></code></pre>
+          <label for="byteCodeContent">Bytecode at Address</label>
+          <pre><code class="javascript" name="byteCodeContent" id="byteCodeContent" placeholder=""></code></pre>
         </div>
 
         <div class="modal fade bs-example-modal-sm" id="userModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
@@ -149,14 +155,15 @@
     </div>
 
     <!-- inject:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bignumber.js/bignumber.js"></script>
-    <script src="js/functions.js"></script>
-    <script src="js/main.js"></script>
-    <script src="bower_components/crypto-js/index.js"></script>
-    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
-    <script src="bower_components/web3/dist/web3.js"></script>
-    <script src="bower_components/web3/dist/web3.min.js"></script>
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./js/Registry.js"></script>
+    <script src="./bower_components/bignumber.js/bignumber.js"></script>
+    <script src="./js/functions.js"></script>
+    <script src="./bower_components/crypto-js/index.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="./bower_components/web3/dist/web3.js"></script>
+    <script src="./bower_components/web3/dist/web3.min.js"></script>
     <!-- endinject -->
 
     <!-- BLOC SCRIPTS -->

@@ -17,8 +17,25 @@ $(document).ready(function() {
      }, 1000);   // one second delay to emphasize retrieval
    })
 
+   $('#solDisplay').click(function(){
+     $('#solPre').css('display','block');
+     $('#solCPre').css('display','none');
+     $('#solDisplay').attr('class','active');
+     $('#solCDisplay').attr('class','');
+   })
+
+   $('#solCDisplay').click(function(){
+     $('#solPre').css('display','none');
+     $('#solCPre').css('display','block');
+     $('#solDisplay').attr('class','');
+     $('#solCDisplay').attr('class','active');
+   })
+
    $('#compareCodeButton').on('click', function() {
-     console.log("Compare code button was clicked");
+     // BLOCKCHAIN REGISTRY SEARCH
+     console.log("Compiling Solidity code...");
+     $('#solidityContentCompiled').html("<img src='img/ajax-loader.gif' alt='' />");
+     $('#solCDisplay').trigger('click');
      var code = $('#solidityContent').text();
      compile(code);
    })
@@ -41,6 +58,7 @@ $(document).ready(function() {
    $('#registerButton').click(function() {
     showRegisterRegistry();
     $('#userModal').modal('show');
+
    })
 
    $('#loginButton').click(function() {
