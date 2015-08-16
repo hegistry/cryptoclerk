@@ -2,8 +2,9 @@ $(document).ready(function() {
 
    $('#searchRegistryButton').on('click', function() {
      console.log("Search registry button was clicked");
+     $('#solidityContent').html("<img src='img/ajax-loader.gif' alt='' />");
      console.log("THIS IS ONLY A MOCK UP");
-     getRegistryData();
+     window.setTimeout(function() { getRegistryData(); },1000);   // one second delay to emphasize retrieval
 
      //$('#byteCodeContent').text(data[0].code);
      /*$.ajax('http://hacknet.blockapps.net/eth/v1.0/account?address=' + contractAddress, {
@@ -14,7 +15,8 @@ $(document).ready(function() {
 
    $('#getContractButton').on('click', function() {
      console.log("Get contract button was clicked");
-     getContract();
+     $('#byteCodeContent').html("<img src='img/ajax-loader.gif' alt='' />");
+     window.setTimeout(function() { getContract(); },1000);     // one second delay to emphasize retrieval
    })
 
    $('#compareCodeButton').on('click', function() {

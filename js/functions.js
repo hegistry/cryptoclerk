@@ -47,12 +47,26 @@ function compile(code) {
 
   var getRegistryData = function() {
     var regReq = new XMLHttpRequest();
+    var ipfsGateway = "http://45.55.48.176:8080/ipfs/";
+    var ipfsHash = "QmRwMoQRjDxQHrqkqkixHkWXhijw2gAh6afhVkiqDYckFC"
+
+    // LOAD FROM IPFS
+    regReq.open('GET', ipfsGateway + ipfsHash);
+    regReq.onreadystatechange = function() {
+      appCode.rawSolidity = regReq.responseText;
+      $('#solidityContent').text(appCode.rawSolidity);
+    }
+    regReq.send();
+
+    // LOAD SOL FILE
+    /*
     regReq.open('GET', 'SimpleStorage.sol');
     regReq.onreadystatechange = function() {
       appCode.rawSolidity = regReq.responseText;
       $('#solidityContent').text(appCode.rawSolidity);
     }
     regReq.send();
+    */
   }
 
   var codeReadyCheck = function() {
