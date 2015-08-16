@@ -38,7 +38,7 @@
               <label for="walletaddress">Your Address&nbsp;&nbsp;</label>
               <input type="text" name="walletaddress" id="walletaddress" readonly>
               <label for="walletDecrypt">Your Password&nbsp;&nbsp;</label>
-              <input type="password" id="walletDecrypt">
+              <input type="password" id="walletDecrypt" placeholder="password">
             </div>
 
           </ul>
@@ -62,19 +62,18 @@
         <div class="col-md-4">
           <div class="col-md-4" id="functionsRegistryDiv">
             <div id="getHashDiv">
-              <button onclick="callgetHash()" id="searchRegistryButton">Search Registry</button>
+              <button onclick="callgetHash()" id="searchRegistryButton" class="btn btn-primary">Search Registry</button>
             </div>
           </div>
         </div>
         <div class="col-md-4">
-          <button type="button" name="button" id="getContractButton">Get Contract Code</button>
-          <button type="button" name="button" id="compareCodeButton">Compare Code</button>
+          <button type="button" name="button" id="getContractButton" class="btn btn-primary">Get Contract Code</button>
+          <button type="button" name="button" id="compareCodeButton" class="btn btn-primary">Compare Code</button>
         </div>
       </div>
-      <div class="row">
+      <!--div class="row">
         <textarea id="afterTXarea" readonly=true rows=24 cols=80></textarea>
-
-      </div>
+      </div-->
 
       <div class="row content-row">
         <div class="col-md-6">

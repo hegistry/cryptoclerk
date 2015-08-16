@@ -11,7 +11,7 @@ var appCode = {
 // Adapted code from the tutorial at http://stablenet.blockapps.net/static/tutorial.html
 function compile(code) {
    var oReq = new XMLHttpRequest();
-   oReq.open("POST", apiURL + "/solc", true);
+   oReq.open("POST", apiURL + "/eth/v1.0/solc", true);
 
    var params = "src=" + encodeURIComponent(code);
    oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
