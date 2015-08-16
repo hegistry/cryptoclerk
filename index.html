@@ -25,8 +25,22 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Register</a></li>
-            <li class=""><a href="#">Verify</a></li>
+            <li class="active toggleableButton" id="registerButton">
+              <a href="#">Register</a>
+            </li>
+            <li class="toggleableButton" id="loginButton">
+              <a href="#">Login</a>
+            </li>
+            <li class="toggleableButton" id="verifyButton">
+              <a href="#">Verify</a>
+            </li>
+            <div class="navbar-text" id="walletRegistryDiv" style="display:none;">
+              <label for="walletaddress">Your Address&nbsp;&nbsp;</label>
+              <input type="text" name="walletaddress" id="walletaddress" readonly>
+              <label for="walletDecrypt">Your Password&nbsp;&nbsp;</label>
+              <input type="password" id="walletDecrypt">
+            </div>
+
           </ul>
 
         </div>
@@ -37,19 +51,29 @@
 
       <!-- SEARCH REGISTRY -->
       <div class="row search-row">
-        <div class="col-md-8">
+        <div class="col-md-4">
           <form class="form-inline">
             <div class="form-group">
               <label for="contractAddress">Contract Address:</label>
-              <input type="text" class="form-control" id="contractAddressInput" placeholder="e1fd0d4a52b75a694de8b55528ad48e2e2cf7859" style="width: 50%">
+              <input type="text" name=_contractAddress id="getHash_contractAddress" class="form-control">
             </div>
           </form>
         </div>
         <div class="col-md-4">
-          <button type="button" name="button" id="searchRegistryButton">Search Registry</button>
+          <div class="col-md-4" id="functionsRegistryDiv">
+            <div id="getHashDiv">
+              <button onclick="callgetHash()" id="searchRegistryButton">Search Registry</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
           <button type="button" name="button" id="getContractButton">Get Contract Code</button>
           <button type="button" name="button" id="compareCodeButton">Compare Code</button>
         </div>
+      </div>
+      <div class="row">
+        <textarea id="afterTXarea" readonly=true rows=24 cols=80></textarea>
+
       </div>
 
       <div class="row content-row">
@@ -62,6 +86,52 @@
           <div>Bytecode:</div>
           <pre><code class="javascript" id="byteCodeContent" placeholder=""></code></pre>
         </div>
+
+        <div class="modal fade bs-example-modal-sm" id="userModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Register and Login</h4>
+              </div>
+              <div class="modal-body">
+                <div id="keygenRegistryDiv">
+                  <p id="key-intro"> First we will generate a key. Protect it with a high entropy password. The key will be sent to you in email, encrypted, after you verify your login. You'll need to confirm before proceeding.</p>
+                  <input type="password" name="keypass" id="keypass">
+                  <label for="keypass">Enter a high entropy password</label>
+                  <button id="keygen-button" onclick="genKeyUser()">Generate Key</button>
+                </div>
+                <div id="createUserRegistryDiv" style="display:none;">
+                  <p id="user-intro">Then, please register your wallet with us!</p>
+                  <input type="text" name="email" id="emailCreateUser" required>
+                  <label for="email">Email</label>
+                  <input type="password" name="loginpass" id="loginpassCreateUser" required>
+                  <label for="loginpass">Password</label>
+                  <input type="hidden" name="enckey" id="enckeyCreateUser" required>
+                  <input type="text" name="address" id="addressCreateUser" readonly required>
+                  <label for="address">Address</label>
+                  <input type="hidden" name="app" id="appCreateUser" value="cryptoclerk2" required>
+                  <button id="user-button" onclick="submitRegistry()">Register</button>
+                </div>
+                <div id="loginRegistryDiv" style="display:none;">
+                  <p id="login-intro">Please login.</p>
+                  <input type="text" name="email" id="emailLogin" required>
+                  <label for="email">Email</label>
+                  <input type="password" name="loginpass" id="loginpassLogin" required>
+                  <label for="loginpass">Password</label>
+                  <input type="text" name="address" id="addressLogin" required>
+                  <label for="address">Address</label>
+                  <input type="hidden" name="app" id="appLogin" value="cryptoclerk2" required>
+                  <button id="user-button" onclick="retrieveRegistry()">Login!</button>
+                </div>
+                <div id="confirmReminderDiv" style="">
+                  <p id="login-intro">Go click the link in the confirmation email before continuing. Then, come back and login.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
 
         <div class="modal fade bs-example-modal-sm" id="compareModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
           <div class="modal-dialog modal-sm">
@@ -81,17 +151,27 @@
       </div>
     </div>
 
-
     <!-- inject:js -->
     <script src="./bower_components/jquery/dist/jquery.js"></script>
     <script src="./bower_components/bignumber.js/bignumber.js"></script>
+    <script src="./js/functions.js"></script>
+    <script src="./js/main.js"></script>
     <script src="./bower_components/crypto-js/index.js"></script>
     <script src="./bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="./bower_components/web3/dist/web3.js"></script>
     <script src="./bower_components/web3/dist/web3.min.js"></script>
-    <script src="./js/functions.js"></script>
-    <script src="./js/main.js"></script>
     <!-- endinject -->
+
+    <!-- BLOC SCRIPTS -->
+    <script src="http://hacknet.blockapps.net/static/js/createUser.js"></script>
+    <script src="http://hacknet.blockapps.net/static/js/userLogin.js"></script>
+    <script src="http://hacknet.blockapps.net/static/ethlightjs.min.js"></script>
+    <script src="http://hacknet.blockapps.net/static/js/api.js"></script>
+
+      <!-- REPLACE IF REGENERATE CONTRACT -->
+      <script src="../js/Registry.js"></script>
+    <!-- END BLOC -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 

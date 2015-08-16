@@ -36,7 +36,7 @@ function compile(code) {
  };
 
   var getContract = function() {
-   var contractAddress = $('#contractAddressInput').val();
+   var contractAddress = $('#getHash_contractAddress').val();
    $.ajax('http://hacknet.blockapps.net/eth/v1.0/account?address=' + contractAddress, {
      type: 'GET'
    }).done(function(data) {

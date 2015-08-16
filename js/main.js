@@ -27,6 +27,25 @@ $(document).ready(function() {
      console.log("box changed ...");
      codeReadyCheck();
    })
+
+   $('.toggleableButton').click(function() {
+     $('.toggleableButton').attr('class','toggleableButton')
+     $(event.currentTarget).attr('class','toggleableButton active')
+   })
+
+   $('#registerButton').click(function() {
+    showRegisterRegistry();
+    $('#userModal').modal('show');
+   })
+
+   $('#loginButton').click(function() {
+    showLoginRegistry();
+    $('#userModal').modal('show');
+   })
+
+   $('#verifyButton').click(function() {
+
+   })
    /*
 
    var ipfsHash = "QmRwMoQRjDxQHrqkqkixHkWXhijw2gAh6afhVkiqDYckFC"
