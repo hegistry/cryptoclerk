@@ -4,10 +4,9 @@
     <meta charset="utf-8">
     <title>CryptoClerk</title>
     <!-- inject:css -->
-    <link rel="stylesheet" href="./bower_components/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="./css/highlight-default.css">
     <link rel="stylesheet" href="./css/main.css">
     <!-- endinject -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
 
   </head>
   <body>
@@ -49,37 +48,51 @@
         <div class="col-md-4">
           <button type="button" name="button" id="searchRegistryButton">Search Registry</button>
           <button type="button" name="button" id="getContractButton">Get Contract Code</button>
-          <button type="button" name="button" id="compileButton">Compile Code on Left</button>
+          <button type="button" name="button" id="compareCodeButton">Compare Code</button>
         </div>
       </div>
 
       <div class="row content-row">
         <div class="col-md-6">
           <div>Solidity:</div>
-          <pre><code class="javascript" id="solidityContent" placeholder="Enter an Ethereum address above...">
-
-          </code></pre>
+          <pre><code class="javascript" id="solidityContent" placeholder="Enter an Ethereum address above..."></code></pre>
         </div>
 
         <div class="col-md-6">
           <div>Bytecode:</div>
-          <pre class="js" id="byteCodeContent" placeholder=""></pre>
+          <pre><code class="javascript" id="byteCodeContent" placeholder=""></code></pre>
         </div>
+
+        <div class="modal fade bs-example-modal-sm" id="compareModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+          <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Comparing Code</h4>
+              </div>
+              <div class="modal-body">
+                <div class="modal-center"><img src="img/ajax-loader.gif" alt="" /></div><br><br>
+                Sit tight, we're checking out your code...
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
 
+
     <!-- inject:js -->
     <script src="./bower_components/jquery/dist/jquery.js"></script>
-    <script src="./js/highlight.pack.js"></script>
-    <script src="./bower_components/codemirror/lib/codemirror.js"></script>
     <script src="./bower_components/bignumber.js/bignumber.js"></script>
     <script src="./bower_components/crypto-js/index.js"></script>
     <script src="./bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="./bower_components/web3/dist/web3.js"></script>
     <script src="./bower_components/web3/dist/web3.min.js"></script>
+    <script src="./js/functions.js"></script>
     <script src="./js/main.js"></script>
     <!-- endinject -->
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
   </body>
