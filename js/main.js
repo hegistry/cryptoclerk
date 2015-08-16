@@ -1,22 +1,20 @@
 $(document).ready(function() {
 
    $('#searchRegistryButton').on('click', function() {
-     console.log("Search registry button was clicked");
+
+     // BLOCKCHAIN REGISTRY SEARCH
+     console.log("Searching registry for an IPFS entry...");
      $('#solidityContent').html("<img src='img/ajax-loader.gif' alt='' />");
-     console.log("THIS IS ONLY A MOCK UP");
-     window.setTimeout(function() { getRegistryData(); },1000);   // one second delay to emphasize retrieval
 
-     //$('#byteCodeContent').text(data[0].code);
-     /*$.ajax('http://hacknet.blockapps.net/eth/v1.0/account?address=' + contractAddress, {
-       type: 'GET'
-     }).done(function(data) {
-     })*/
-   })
-
-   $('#getContractButton').on('click', function() {
-     console.log("Get contract button was clicked");
+     // BYTECODE RETRIEVAL
+     console.log("Retrieving bytecode from blockchain...");
      $('#byteCodeContent').html("<img src='img/ajax-loader.gif' alt='' />");
-     window.setTimeout(function() { getContract(); },1000);     // one second delay to emphasize retrieval
+
+     // ONE SECOND DELAY TO EMPHASIZE RETRIEVAL
+     window.setTimeout(function() {
+       getRegistryData();
+       getContract();
+     }, 1000);   // one second delay to emphasize retrieval
    })
 
    $('#compareCodeButton').on('click', function() {
@@ -25,15 +23,20 @@ $(document).ready(function() {
      compile(code);
    })
 
+   /* // BINDING IF YOU WANT TO AUTO-COMPARE WHEN BOTH BOXES HAVE TEXT
    $('code').bind('DOMSubtreeModified', function() {
      console.log("box changed ...");
      codeReadyCheck();
    })
+   */
+
+   /* // TOGGLE IF YOU WANT TO SHOW WHICH PAGE YOU'RE ON
 
    $('.toggleableButton').click(function() {
      $('.toggleableButton').attr('class','toggleableButton')
      $(event.currentTarget).attr('class','toggleableButton active')
    })
+   */
 
    $('#registerButton').click(function() {
     showRegisterRegistry();
@@ -45,9 +48,6 @@ $(document).ready(function() {
     $('#userModal').modal('show');
    })
 
-   $('#verifyButton').click(function() {
-
-   })
    /*
 
    var ipfsHash = "QmRwMoQRjDxQHrqkqkixHkWXhijw2gAh6afhVkiqDYckFC"

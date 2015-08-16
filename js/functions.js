@@ -51,22 +51,26 @@ function compile(code) {
     var ipfsHash = "QmRwMoQRjDxQHrqkqkixHkWXhijw2gAh6afhVkiqDYckFC"
 
     // LOAD FROM IPFS
+    /*
+    console.log("TRYING TO GET IPFS DATA");
     regReq.open('GET', ipfsGateway + ipfsHash);
     regReq.onreadystatechange = function() {
       appCode.rawSolidity = regReq.responseText;
+      console.log("Retrieved IPFS Data: " + appCode.rawSolidity);
       $('#solidityContent').text(appCode.rawSolidity);
     }
     regReq.send();
+    */
 
     // LOAD SOL FILE
-    /*
+
     regReq.open('GET', 'SimpleStorage.sol');
     regReq.onreadystatechange = function() {
       appCode.rawSolidity = regReq.responseText;
       $('#solidityContent').text(appCode.rawSolidity);
     }
     regReq.send();
-    */
+    
   }
 
   var codeReadyCheck = function() {

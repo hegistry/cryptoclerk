@@ -31,9 +31,6 @@
             <li class="toggleableButton" id="loginButton">
               <a href="#">Login</a>
             </li>
-            <li class="toggleableButton" id="verifyButton">
-              <a href="#">Verify</a>
-            </li>
             <li class="navbar-text" id="walletRegistryDiv" style="display:none;">
               <label for="walletaddress">Your Address&nbsp;&nbsp;</label>
               <input type="text" name="walletaddress" id="walletaddress" readonly>
@@ -67,7 +64,6 @@
           </div>
         </div>
         <div class="col-md-4">
-          <button type="button" name="button" id="getContractButton" class="btn btn-primary">Get Contract Code</button>
           <button type="button" name="button" id="compareCodeButton" class="btn btn-primary">Compare Code</button>
         </div>
       </div>
@@ -114,11 +110,11 @@
                 </div>
                 <div id="loginRegistryDiv" style="display:none;">
                   <p id="login-intro">Please login.</p>
-                  <input type="text" name="email" id="emailLogin" required>
+                  <input type="text" name="email" id="emailLogin" value="jdmaresco+go@gmail.com" required>
                   <label for="email">Email</label>
-                  <input type="password" name="loginpass" id="loginpassLogin" required>
+                  <input type="password" name="loginpass" id="loginpassLogin" value="asdf" required>
                   <label for="loginpass">Password</label>
-                  <input type="text" name="address" id="addressLogin" required>
+                  <input type="text" name="address" id="addressLogin" value="3dc98c0b7efdf00f2b852a25b9a0a5305b59ced4" required>
                   <label for="address">Address</label>
                   <input type="hidden" name="app" id="appLogin" value="cryptoclerk2" required>
                   <button id="user-button" onclick="retrieveRegistry()">Login!</button>
